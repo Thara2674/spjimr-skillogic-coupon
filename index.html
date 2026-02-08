@@ -166,26 +166,30 @@
     <div class="section">
         <div class="section-title">Get Your Exclusive E-Coupon</div>
 
-        <!-- FORM WILL BE CONNECTED NEXT -->
-        <form>
+        <!-- CONNECTED TO GOOGLE FORM BACKEND -->
+        <form
+          action="https://docs.google.com/forms/d/1KsJh85Gq5uajG00d6YvYwADTi-Gj42tP14GfXf24yBo/formResponse"
+          method="POST"
+          target="_self">
+
             <label>Full Name</label>
-            <input type="text" required>
+            <input type="text" name="entry.125430583" required>
 
             <label>Email Address</label>
-            <input type="email" required>
+            <input type="email" name="entry.515957778" required>
 
             <label>Mobile Number</label>
-            <input type="tel" required>
+            <input type="tel" name="entry.1428416794" required>
 
             <label>College / Stream</label>
-            <input type="text" required>
+            <input type="text" name="entry.1869472663" required>
 
             <label>Interested Program</label>
-            <select required>
+            <select name="entry.307313007" required>
                 <option value="">Select</option>
-                <option>Artificial Intelligence</option>
-                <option>Data Science</option>
-                <option>Cybersecurity</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Cybersecurity">Cybersecurity</option>
             </select>
 
             <button type="submit">Generate My ₹12,000 E-Coupon</button>
