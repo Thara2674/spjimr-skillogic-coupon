@@ -173,43 +173,32 @@
     <div class="section">
         <div class="section-title">Get Your Exclusive E-Coupon</div>
 
-        <!-- HIDDEN IFRAME -->
-        <iframe name="hidden_iframe" style="display:none;"></iframe>
-
         <!-- FORM -->
-        <form id="couponForm"
-              action="action="https://docs.google.com/forms/d/1KsJh85Gq5uajG00d6YvYwADTi-Gj42tP14GfXf24yBo/formResponse"
-              method="POST"
-              target="hidden_iframe">
+        <form id="couponForm">
 
             <label>Full Name</label>
-            <input type="text" name="entry.125430583" required>
+            <input type="text" id="name" required>
 
             <label>Email Address</label>
-            <input type="email" name="entry.515957778" required>
+            <input type="email" id="email" required>
 
             <label>Mobile Number</label>
-            <input type="tel" name="entry.1428416794" required>
+            <input type="tel" id="mobile" required>
 
             <label>College / Stream</label>
-            <input type="text" name="entry.1869472663" required>
+            <input type="text" id="college" required>
 
             <label>Interested Program</label>
-            <select name="entry.307313007" required>
+            <select id="program" required>
                 <option value="">Select</option>
-                <option value="Artificial Intelligence">Artificial Intelligence</option>
-                <option value="Data Science">Data Science</option>
-                <option value="Cybersecurity">Cybersecurity</option>
+                <option>Artificial Intelligence</option>
+                <option>Data Science</option>
+                <option>Cybersecurity</option>
             </select>
-
-            <!-- REQUIRED GOOGLE FORM FIELDS -->
-            <input type="hidden" name="fvv" value="1">
-            <input type="hidden" name="fbzx" value="-1">
 
             <button type="submit">Generate My ₹12,000 E-Coupon</button>
         </form>
 
-        <!-- SUCCESS MESSAGE -->
         <div class="success-message" id="successMessage">
             <strong>Thank you for your application.</strong><br><br>
             Your request has been successfully received.<br>
@@ -231,11 +220,27 @@
 </div>
 
 <script>
-document.getElementById("couponForm").addEventListener("submit", function () {
-    setTimeout(function () {
-        document.getElementById("couponForm").style.display = "none";
-        document.getElementById("successMessage").style.display = "block";
-    }, 500);
+document.getElementById("couponForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        mobile: document.getElementById("mobile").value,
+        college: document.getElementById("college").value,
+        program: document.getElementById("program").value
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbyzk12yRCPy0DBT75kJaEXq8kwRBusQ90M2mzMUVh1GAkBR82aUAnJHtPgV1sRbcAYD/exec", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    document.getElementById("couponForm").style.display = "none";
+    document.getElementById("successMessage").style.display = "block";
 });
 </script>
 
