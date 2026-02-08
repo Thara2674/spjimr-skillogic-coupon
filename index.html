@@ -70,10 +70,6 @@
             font-size: 16px;
         }
 
-        form {
-            margin-top: 30px;
-        }
-
         label {
             display: block;
             margin-top: 15px;
@@ -111,6 +107,17 @@
             margin-top: 15px;
             color: #555;
             text-align: center;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 6px;
+            background: #f0f6ff;
+            border: 1px solid #d6e4ff;
+            text-align: center;
+            font-size: 15px;
         }
 
         .footer {
@@ -166,11 +173,14 @@
     <div class="section">
         <div class="section-title">Get Your Exclusive E-Coupon</div>
 
-        <!-- CONNECTED TO GOOGLE FORM BACKEND -->
-        <form
-          action="https://docs.google.com/forms/d/1KsJh85Gq5uajG00d6YvYwADTi-Gj42tP14GfXf24yBo/formResponse"
-          method="POST"
-          target="_self">
+        <!-- HIDDEN IFRAME -->
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+        <!-- FORM -->
+        <form id="couponForm"
+              action="https://docs.google.com/forms/d/1KsJh85Gq5uajG00d6YvYwADTi-Gj42tP14GfXf24yBo/formResponse"
+              method="POST"
+              target="hidden_iframe">
 
             <label>Full Name</label>
             <input type="text" name="entry.125430583" required>
@@ -195,6 +205,14 @@
             <button type="submit">Generate My ₹12,000 E-Coupon</button>
         </form>
 
+        <!-- SUCCESS MESSAGE -->
+        <div class="success-message" id="successMessage">
+            <strong>Thank you for your application.</strong><br><br>
+            Your request has been successfully received.<br>
+            The exclusive <strong>₹12,000 event e-coupon</strong> will be sent to your
+            registered email address within the next few minutes.
+        </div>
+
         <div class="note">
             * Coupon is valid only for students attending the SPJIMR × Skillogic event.
             Valid till <strong>15 March</strong>.
@@ -207,6 +225,15 @@
     <span>© 2026 SPJIMR × Skillogic</span>
     <span>This portal is for academic event participants only.</span>
 </div>
+
+<script>
+document.getElementById("couponForm").addEventListener("submit", function () {
+    setTimeout(function () {
+        document.getElementById("couponForm").style.display = "none";
+        document.getElementById("successMessage").style.display = "block";
+    }, 500);
+});
+</script>
 
 </body>
 </html>
