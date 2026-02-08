@@ -173,7 +173,6 @@
     <div class="section">
         <div class="section-title">Get Your Exclusive E-Coupon</div>
 
-        <!-- FORM -->
         <form id="couponForm">
 
             <label>Full Name</label>
@@ -223,20 +222,16 @@
 document.getElementById("couponForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        mobile: document.getElementById("mobile").value,
-        college: document.getElementById("college").value,
-        program: document.getElementById("program").value
-    };
+    const formData = new FormData();
+    formData.append("name", document.getElementById("name").value);
+    formData.append("email", document.getElementById("email").value);
+    formData.append("mobile", document.getElementById("mobile").value);
+    formData.append("college", document.getElementById("college").value);
+    formData.append("program", document.getElementById("program").value);
 
     fetch("https://script.google.com/macros/s/AKfycbyzk12yRCPy0DBT75kJaEXq8kwRBusQ90M2mzMUVh1GAkBR82aUAnJHtPgV1sRbcAYD/exec", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
+        body: formData
     });
 
     document.getElementById("couponForm").style.display = "none";
